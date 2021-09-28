@@ -4,8 +4,10 @@ close all;
 %Using Alyssa's excel spreadsheet, these should be the only quantities you
 %have to change
 
-hfig = openfig("pour4.fig");
-pour = 4;
+hfig = openfig("pour8.fig");
+pour = 8;
+
+disp("Taking data for pour #" + pour);
 
 %Plot the original figure for reference
 title("Original Figure")
@@ -142,7 +144,7 @@ title("Theoretical adjusted using average calculated mu");
 
 clear;
 
-pours = [7,8,4,5,6];
+pours = [4,5,6,7,8];
 data = readmatrix('PourProperties.xlsx');
 g = 9.81;
 
