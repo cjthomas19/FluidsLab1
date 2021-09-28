@@ -1,3 +1,4 @@
+%% Initialization
 clear;
 close all;
 
@@ -12,6 +13,15 @@ disp("Taking data for pour #" + pour);
 %Plot the original figure for reference
 title("Original Figure")
 
+%Define gravitational constant
+g = 9.81; %m/s^2
+
+%Get the properties of the pour from the excel spreadsheet
+data = readmatrix('PourProperties.xlsx');
+rho=data(pour,3); %fluid density, kg/m^3
+mu=data(pour,4); %viscosity, Pa*s
+Q=data(pour,6); %Volume, m^3
+
 %% Plot theoretical and measured radii
 
 %Get the x and y of our measured data
@@ -22,19 +32,10 @@ dataobjs = axsobj.Children;
 t = dataobjs(2).XData-1;
 R = (dataobjs(2).YData/2)/1000;
 
-%Plot it in a more pleasing way
+%Plot it in a more aesthetic way
 figure;
 plot(t,R*1000,'x')
 hold on;
-
-%Define gravitational constant
-g = 9.81; %m/s^2
-
-%Get the properties of the pour from the excel spreadsheet
-data = readmatrix('PourProperties.xlsx');
-rho=data(pour,3); %fluid density, kg/m^3
-mu=data(pour,4); %viscosity, Pa*s
-Q=data(pour,6); %Volume, m^3
 
 %Generate a theoretical plot of r and dr/dt (in mm and mm/s, respectively)
 t_theo = 0:.1:max(t);
