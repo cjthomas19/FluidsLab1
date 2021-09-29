@@ -120,9 +120,9 @@ plot(t(2:end),bo);
 title("Bo in time");
 
 avg_bo = sum(bo)/numel(bo);
-max_bo = max(bo);
-disp("Reynold Number Average: " + avg_bo);
-disp("Reynold Number Maximum: " + max_bo);
+min_bo = min(bo);
+disp("Bond Number Average: " + avg_bo);
+disp("Bond Number Minimum: " + min_bo);
 
 
 %% Plot adjusted theoretical prediction
