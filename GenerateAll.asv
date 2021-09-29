@@ -22,10 +22,9 @@ rho=data(pour,3); %fluid density, kg/m^3
 mu=data(pour,4); %viscosity, Pa*s
 Q=data(pour,6); %Volume, m^3
 
-disp("Nominal/Recorded Values");
 disp("\rho = " + rho);
 disp("\mu = " + mu);
-disp("Q = " + Q * 10^6 + "mL");
+disp("Q = " + 
 
 %% Plot theoretical and measured radii
 
