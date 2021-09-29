@@ -5,10 +5,10 @@ close all;
 %Using Alyssa's excel spreadsheet, these should be the only quantities you
 %have to change
 
-hfig = openfig("pour8.fig");
-pour = 8;
+hfig = openfig("pour4.fig");
+pour = 4;
 
-disp("Taking data for pour #" + pour);
+disp("Taking data for trial #" + pour);
 
 %Plot the original figure for reference
 title("Original Figure")
@@ -45,9 +45,11 @@ dR_theo = (0.779/8) .* (g .* rho .* Q .^3 ./ mu) .^ (1/8) .* (t_theo.^(-7/8));
 %Plot the theoretical next to the measured data
 plot(t_theo,R_theo*1000,'--');
 
-title("Radius vs. Time for Pour " + pour);
+title("Radius vs. Time for Trial " + pour);
 xlabel("t (s)");
 ylabel("R (mm)");
+
+legend(["Measured", "Theoretical"]);
 
 %% Plot U = dR/dt theoretical and measured
 
@@ -71,9 +73,10 @@ plot(deriv_t, dR*1000, 'x')
 hold on;
 plot(t_theo, dR_theo*1000, '--')
 
-title("Radius Expansion Speed for Pour " + pour);
+title("Radius Expansion Speed for Trial " + pour);
 xlabel("t (s)");
-ylabel("U (mm/s)");
+ylabel("U=dR/dt (mm/s)");
+legend(["Measured", "Theoretical"]);
 
 %% plot height vs. time, assuming cylindrical spread
 figure;
@@ -81,7 +84,7 @@ figure;
 h = Q ./ ( R .^2 .* pi);
 
 plot(t, h*1000);
-title("Cylindrical Height");
+title("Cylindrical Height for Trial " + pour);
 ylabel("H (mm)")
 xlabel("t (s)");
 
@@ -111,13 +114,16 @@ avg_re = sum(re)/numel(re);
 max_re = max(re);
 disp("Reynold Number Average: " + avg_re);
 disp("Reynold Number Maximum: " + max_re);
-
+xlabel("t (s)");
+ylabel("Re");
 
 bo = rho .* g .* L.^2 ./ sig;
 %disp("Bond number: " + bo);
 figure
 plot(t(2:end),bo);
 title("Bo in time");
+xlabel("t (s)");
+ylabel("Bo");
 
 avg_bo = sum(bo)/numel(bo);
 min_bo = min(bo);
@@ -136,7 +142,10 @@ tr = 0.779 .* (g .* rho .* Q .^3 .* t_theo ./ mu_avg) .^ (1/8);
 hold on;
 
 plot(t_theo, tr*1000, "--");
-title("Theoretical adjusted using average calculated mu");
+title("Adjusted Theoretical and Measured for Trial " + pour);
+legend(["Measured", "Theoretical"]);
+xlabel("t (s)");
+ylabel("R (mm)");
 
 %% calculate dimensionless quantities for a set of pours
 %This part of the code is separate from the rest. It takes in a set of
@@ -198,4 +207,5 @@ title("Dimensionless Radial Growth");
 xlabel("t*");
 ylabel("R*");
 
+legend(["Trial " + pours, "Theoretical"]);
 
